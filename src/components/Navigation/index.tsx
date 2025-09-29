@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import {
     Nav,
     NavItem,
@@ -13,12 +14,27 @@ import {
 import CustomButton from '../Button';
 
 type NavigationProps = {
-    hasMobileNav?: boolean; // 👈 prop opcional
+    hasMobileNav?: boolean;
 };
 
 export default function Navigation({ hasMobileNav = true }: NavigationProps) {
     const [activeSection, setActiveSection] = useState('home');
     const [isOpen, setIsOpen] = useState(false);
+    const [portalEl, setPortalEl] = useState<HTMLElement | null>(null);
+
+    useEffect(() => {
+        const id = 'mobile-menu-portal';
+        let el = document.getElementById(id);
+        if (!el) {
+            el = document.createElement('div');
+            el.id = id;
+            document.body.appendChild(el);
+        }
+        setPortalEl(el);
+        return () => {
+            if (el && el.parentNode) el.parentNode.removeChild(el);
+        };
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -59,9 +75,9 @@ export default function Navigation({ hasMobileNav = true }: NavigationProps) {
         window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
     };
 
-    const handleCloseMenu = (e: React.MouseEvent) => {
+    const handleCloseMenu = (e?: React.MouseEvent) => {
+        if (e) e.stopPropagation();
         setIsOpen(false);
-        e.stopPropagation();
     };
 
     const handleMenuClick = (e: React.MouseEvent) => {
@@ -69,22 +85,28 @@ export default function Navigation({ hasMobileNav = true }: NavigationProps) {
     };
 
     return (
-        <Nav>
-            {hasMobileNav && (
-                <Hamburger
-                    onClick={() => setIsOpen(!isOpen)}
-                    className={isOpen ? 'open' : ''}
-                    aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'}
-                >
-                    <span />
-                    <span />
-                    <span />
-                </Hamburger>
-            )}
+        <>
+            <Nav>
+                {hasMobileNav && (
+                    <Hamburger
+                        onClick={() => setIsOpen((s) => !s)}
+                        className={isOpen ? 'open' : ''}
+                        aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'}
+                    >
+                        <span />
+                        <span />
+                        <span />
+                    </Hamburger>
+                )}
 
-            <NavList $hasMobileNav={hasMobileNav}>
-                {['home', 'about', 'articles', 'testimonials', 'contact'].map(
-                    (section) => (
+                <NavList $hasMobileNav={hasMobileNav}>
+                    {[
+                        'home',
+                        'about',
+                        'articles',
+                        'testimonials',
+                        'contact',
+                    ].map((section) => (
                         <NavItem key={section}>
                             <NavLink
                                 href={`#${section}`}
@@ -103,61 +125,65 @@ export default function Navigation({ hasMobileNav = true }: NavigationProps) {
                                     : 'Contato'}
                             </NavLink>
                         </NavItem>
-                    ),
-                )}
-            </NavList>
+                    ))}
+                </NavList>
+            </Nav>
 
-            {hasMobileNav && (
-                <MobileMenuWrapper
-                    className={isOpen ? 'open' : ''}
-                    onClick={handleCloseMenu}
-                >
-                    <MobileMenu
+            {portalEl &&
+                hasMobileNav &&
+                createPortal(
+                    <MobileMenuWrapper
                         className={isOpen ? 'open' : ''}
-                        onClick={handleMenuClick}
+                        onClick={handleCloseMenu}
+                        aria-hidden={!isOpen}
                     >
-                        {[
-                            'home',
-                            'about',
-                            'articles',
-                            'testimonials',
-                            'contact',
-                        ].map((section) => (
-                            <NavItem key={section}>
-                                <NavLink
-                                    href={`#${section}`}
-                                    onClick={handleCloseMenu}
-                                    className={
-                                        activeSection === section
-                                            ? 'active'
-                                            : ''
-                                    }
-                                >
-                                    {section === 'home'
-                                        ? 'Início'
-                                        : section === 'about'
-                                        ? 'Sobre'
-                                        : section === 'articles'
-                                        ? 'Artigos'
-                                        : section === 'testimonials'
-                                        ? 'Depoimentos'
-                                        : 'Contato'}
-                                </NavLink>
-                            </NavItem>
-                        ))}
+                        <MobileMenu
+                            className={isOpen ? 'open' : ''}
+                            onClick={handleMenuClick}
+                        >
+                            {[
+                                'home',
+                                'about',
+                                'articles',
+                                'testimonials',
+                                'contact',
+                            ].map((section) => (
+                                <NavItem key={section}>
+                                    <NavLink
+                                        href={`#${section}`}
+                                        onClick={handleCloseMenu}
+                                        className={
+                                            activeSection === section
+                                                ? 'active'
+                                                : ''
+                                        }
+                                    >
+                                        {section === 'home'
+                                            ? 'Início'
+                                            : section === 'about'
+                                            ? 'Sobre'
+                                            : section === 'articles'
+                                            ? 'Artigos'
+                                            : section === 'testimonials'
+                                            ? 'Depoimentos'
+                                            : 'Contato'}
+                                    </NavLink>
+                                </NavItem>
+                            ))}
 
-                        <NavItem>
-                            <CustomButton
-                                text="Agendar Consulta"
-                                onClick={() => {
-                                    setIsOpen(false);
-                                    handleRedirectToWhatsApp();
-                                }}
-                            />
-                        </NavItem>
-                    </MobileMenu>
-                </MobileMenuWrapper>
-            )}
-        </Nav>
+                            <NavItem>
+                                <CustomButton
+                                    text="Agendar Consulta"
+                                    onClick={() => {
+                                        setIsOpen(false);
+                                        handleRedirectToWhatsApp();
+                                    }}
+                                />
+                            </NavItem>
+                        </MobileMenu>
+                    </MobileMenuWrapper>,
+                    portalEl,
+                )}
+        </>
     );
 }

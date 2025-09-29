@@ -21,9 +21,9 @@ export const NavList = styled.ul<NavListProps>`
         $hasMobileNav &&
         `
     @media (max-width: 1024px) {
-        display: none;
-        }
-        `}
+      display: none;
+    }
+  `}
 
     @media (max-width: 768px) {
         gap: 1rem;
@@ -95,7 +95,6 @@ export const Hamburger = styled.button`
     border: none;
     cursor: pointer;
     padding: 0;
-    z-index: 1001;
 
     span {
         display: block;
@@ -124,23 +123,22 @@ export const Hamburger = styled.button`
 `;
 
 export const MobileMenuWrapper = styled.div`
-    display: flex;
-    align-items: end;
-    justify-content: end;
     position: fixed;
-    top: 0;
-    left: 100%;
-    width: 100svw;
-    height: 100svh;
+    inset: 0;
+    display: flex;
+    justify-content: flex-end;
     background: ${theme.colors.shadow};
-    transition: left 0.3s ease;
-    z-index: 500;
+    transform: translateX(100%);
+    transition: transform 0.25s ease;
+    pointer-events: none;
+    z-index: 999;
 
     &.open {
-        left: 0;
+        transform: translateX(0);
+        pointer-events: auto;
     }
 
-    @media (min-width: 1025px) {
+    @media (min-width: 1024px) {
         display: none;
     }
 `;
@@ -148,22 +146,18 @@ export const MobileMenuWrapper = styled.div`
 export const MobileMenu = styled.ul`
     list-style: none;
     display: flex;
+    position: relative;
     flex-direction: column;
+    text-align: center;
     gap: 2rem;
-    top: 0;
-    left: 100%;
-    width: 285px;
-    height: 100vh;
+    width: fit-content;
+    height: 100svh;
     background: ${theme.colors.background};
-    padding: 5rem 2rem;
-    transition: left 0.3s ease;
+    padding: 5rem 1.5rem;
     z-index: 1000;
+    box-shadow: -6px 0 20px ${theme.colors.shadow};
 
-    &.open {
-        left: 0;
-    }
-
-    @media (min-width: 1025px) {
+    @media (min-width: 1024px) {
         display: none;
     }
 `;

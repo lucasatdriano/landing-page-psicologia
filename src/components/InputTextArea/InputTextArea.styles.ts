@@ -25,9 +25,6 @@ export const Label = styled.label`
 `;
 
 export const TextAreaField = styled.textarea<TextAreaFieldProps>`
-     {
-        /* ⚠️ Mudei para textarea */
-    }
     width: ${(props) => (props.$fullWidth ? '100%' : 'auto')};
     padding: 1rem;
     border: 2px solid
@@ -39,11 +36,10 @@ export const TextAreaField = styled.textarea<TextAreaFieldProps>`
     color: ${theme.colors.text};
     background-color: ${theme.colors.background};
     transition: all 0.3s ease;
-    resize: vertical; /* Permite redimensionar verticalmente */
-    min-height: 120px; /* Altura mínima */
-    line-height: 1.5; /* Melhor espaçamento entre linhas */
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.5;
 
-    /* Remove a setinha padrão do textarea */
     &::-webkit-resizer {
         display: none;
     }

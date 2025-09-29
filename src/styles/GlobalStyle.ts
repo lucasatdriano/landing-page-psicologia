@@ -8,6 +8,8 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scrollbar-width: thin;
+    scrollbar-color: ${theme.colors.primary} ${theme.colors.background};
   }
     
   html {
@@ -33,11 +35,6 @@ const GlobalStyle = createGlobalStyle`
 
   body::-webkit-scrollbar-thumb:hover {
     background-color: ${theme.colors.primary};
-  }
-
-  * {
-    scrollbar-width: thin;
-    scrollbar-color: ${theme.colors.primary} ${theme.colors.background};
   }
 `;
 
