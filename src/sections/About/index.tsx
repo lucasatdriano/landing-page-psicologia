@@ -16,18 +16,30 @@ export default function AboutSection() {
             <CustomTitle text="Sobre Mim" />
             <AboutContentWrapper>
                 <AboutImageWrapper>
-                    <Image
-                        src="/images/AboutImage.jpg"
-                        alt="Imagem Demonstrativa"
-                        width={700}
-                        height={300}
-                    />
+                    <div className="desktop-image">
+                        <Image
+                            src="/images/AboutImage.jpg"
+                            alt="Imagem Desktop"
+                            width={490}
+                            height={300}
+                            priority
+                        />
+                    </div>
+                    <div className="mobile-image">
+                        <Image
+                            src="/images/HeroImage.jpg"
+                            alt="Imagem Mobile"
+                            width={350}
+                            height={250}
+                            priority
+                        />
+                    </div>
                 </AboutImageWrapper>
                 <AboutContent>
                     <Text>
                         Sou a Dra. Julia Caroline, psicóloga clínica com
                         especialização em Terapia Cognitivo-Comportamental. Com
-                        mais de 10 anos de experiência, meu objetivo é oferecer
+                        mais de 5 anos de experiência, meu objetivo é oferecer
                         um atendimento humanizado e eficaz, ajudando meus
                         pacientes a superarem desafios emocionais e alcançarem
                         maior qualidade de vida.

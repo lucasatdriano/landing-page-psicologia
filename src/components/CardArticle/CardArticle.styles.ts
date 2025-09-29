@@ -11,13 +11,30 @@ export const CardContainer = styled.header`
     text-align: center;
     border-radius: 10px;
     box-shadow: 4px 4px 10px 2px ${theme.colors.shadow};
+    flex: 1;
+
+    @media (max-width: 1350px) {
+        width: 45%;
+        min-width: 250px;
+    }
+
+    @media (max-width: 768px) {
+        width: 100%;
+        min-width: 300px;
+    }
 `;
 
 export const CardImageWrapper = styled.div`
     overflow: hidden;
-    height: 200px;
     width: 100%;
+    max-height: 200px;
     border-radius: 10px;
+    margin: auto;
+
+    @media (max-width: 1350px) {
+        max-height: 150px;
+        max-width: fit-content;
+    }
 `;
 
 export const ArticleTitle = styled.h3`
@@ -25,6 +42,14 @@ export const ArticleTitle = styled.h3`
     font-size: ${theme.fontSizes.large};
     font-weight: 500;
     margin-bottom: 0.5rem;
+
+    @media (max-width: 1350px) {
+        font-size: calc(${theme.fontSizes.large} * 0.9);
+    }
+
+    @media (max-width: 768px) {
+        font-size: calc(${theme.fontSizes.large} * 0.8);
+    }
 `;
 
 export const ArticleDescription = styled.p`
@@ -32,6 +57,15 @@ export const ArticleDescription = styled.p`
     font-size: ${theme.fontSizes.base};
     margin-bottom: 1rem;
     text-align: left;
+
+    @media (max-width: 1024px) {
+        font-size: calc(${theme.fontSizes.base} * 0.9);
+    }
+
+    @media (max-width: 768px) {
+        font-size: calc(${theme.fontSizes.base} * 0.8);
+        margin-bottom: 0.5rem;
+    }
 `;
 
 export const ArticleLink = styled.a`
@@ -42,4 +76,12 @@ export const ArticleLink = styled.a`
     text-align: left;
     font-weight: 500;
     text-decoration: underline;
+
+    @media (max-width: 1024px) {
+        font-size: calc(${theme.fontSizes.large} * 0.9);
+    }
+
+    @media (max-width: 768px) {
+        font-size: calc(${theme.fontSizes.large} * 0.8);
+    }
 `;

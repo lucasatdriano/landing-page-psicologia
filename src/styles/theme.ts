@@ -9,6 +9,7 @@ export const theme = {
         input: '#F6F0F9',
         placeholder: '#8B8B8B',
         shadow: '#0000001a',
+        success: '#155724',
         error: '#940101',
     },
     fonts: {

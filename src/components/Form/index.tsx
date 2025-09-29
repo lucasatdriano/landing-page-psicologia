@@ -1,8 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import emailjs from '@emailjs/browser';
 import CustomButton from '../Button';
-import { FormContainer, InputContainer, Title } from './Form.styles';
+import {
+    FormContainer,
+    InputContainer,
+    Title,
+    SuccessMessage,
+    ErrorMessage,
+} from './Form.styles';
 import InputTextArea from '../InputTextArea';
 import InputText from '../InputText';
 
@@ -12,10 +19,57 @@ export default function Form() {
         email: '',
         message: '',
     });
-    const [errors, setErrors] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
+    const [error, setError] = useState('');
 
-    const handleSubmit = (e: React.FormEvent) => {
+    useEffect(() => {
+        if (isSuccess) {
+            const timer = setTimeout(() => {
+                setIsSuccess(false);
+            }, 10 * 1000); // 10 segundos
+
+            return () => clearTimeout(timer);
+        }
+    }, [isSuccess]);
+
+    useEffect(() => {
+        if (error) {
+            const timer = setTimeout(() => {
+                setError('');
+            }, 20 * 1000); // 20 segundos
+
+            return () => clearTimeout(timer);
+        }
+    }, [error]);
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setIsLoading(true);
+        setError('');
+        setIsSuccess(false);
+
+        try {
+            const result = await emailjs.send(
+                process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+                process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+                {
+                    name: formData.name,
+                    message: formData.message,
+                    time: new Date().toLocaleString('pt-BR'),
+                    email: formData.email,
+                },
+                process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
+            );
+
+            setIsSuccess(true);
+            setFormData({ name: '', email: '', message: '' });
+        } catch (error) {
+            console.error('❌ Erro completo:', error);
+            setError('Template não encontrado. Use a versão Gmail abaixo.');
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const handleChange = (
@@ -23,12 +77,49 @@ export default function Form() {
     ) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
+
+        if (isSuccess) setIsSuccess(false);
+        if (error) setError('');
+    };
+
+    const openGmail = () => {
+        const subject = `Consulta - Mensagem de ${formData.name}`;
+        const body = `Nome: ${formData.name}\nEmail: ${
+            formData.email
+        }\nData: ${new Date().toLocaleString('pt-BR')}\n\nMensagem:\n${
+            formData.message
+        }`;
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=lucastavares0190@gmail.com&su=${encodeURIComponent(
+            subject,
+        )}&body=${encodeURIComponent(body)}`;
+        window.open(gmailUrl, '_blank');
+
+        setIsSuccess(true);
+        setFormData({ name: '', email: '', message: '' });
     };
 
     return (
         <FormContainer onSubmit={handleSubmit}>
             <InputContainer>
                 <Title>Envie um E-mail</Title>
+
+                {isSuccess && (
+                    <SuccessMessage>
+                        ✅ Mensagem enviada com sucesso! Em breve retornaremos
+                    </SuccessMessage>
+                )}
+
+                {error && (
+                    <div>
+                        <ErrorMessage>❌ {error}</ErrorMessage>
+                        <CustomButton
+                            type="button"
+                            text={
+                                isLoading ? 'Enviando...' : 'Enviar pelo Gmail'
+                            }
+                        />
+                    </div>
+                )}
 
                 <InputText
                     name="name"
@@ -37,8 +128,9 @@ export default function Form() {
                     id="InputName"
                     value={formData.name}
                     onChange={handleChange}
-                    max-length={100}
+                    maxLength={100}
                     required
+                    disabled={isLoading}
                 />
 
                 <InputText
@@ -49,8 +141,9 @@ export default function Form() {
                     id="InputEmail"
                     value={formData.email}
                     onChange={handleChange}
-                    max-length={50}
+                    maxLength={50}
                     required
+                    disabled={isLoading}
                 />
 
                 <InputTextArea
@@ -62,10 +155,14 @@ export default function Form() {
                     onChange={handleChange}
                     rows={5}
                     required
+                    disabled={isLoading}
                 />
             </InputContainer>
 
-            <CustomButton type="submit" text={'Enviar Mensagem'} />
+            <CustomButton
+                type="submit"
+                text={isLoading ? 'Enviando...' : 'Enviar Mensagem'}
+            />
         </FormContainer>
     );
 }

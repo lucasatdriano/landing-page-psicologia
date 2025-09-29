@@ -1,7 +1,11 @@
 'use client';
 
 import Image from 'next/image';
-import { ButtonContainer, WhatsAppLink } from './WhatsappButton.styles';
+import {
+    ButtonContainer,
+    WhatsAppLink,
+    ImageWrapper,
+} from './WhatsappButton.styles';
 
 export default function WhatsappButton() {
     const phoneNumber = '5511962891098';
@@ -20,12 +24,14 @@ export default function WhatsappButton() {
                 rel="noopener noreferrer"
                 aria-label="Conversar no WhatsApp com a Dra. Julia Caroline"
             >
-                <Image
-                    src="/icons/WhatsappIcon.svg"
-                    alt="Ícone do WhatsApp para conversar com a psicóloga"
-                    width={65}
-                    height={65}
-                />
+                <ImageWrapper>
+                    <Image
+                        src="/icons/WhatsappIcon.svg"
+                        alt="Ícone do WhatsApp para conversar com a psicóloga"
+                        width={65}
+                        height={65}
+                    />
+                </ImageWrapper>
             </WhatsAppLink>
         </ButtonContainer>
     );

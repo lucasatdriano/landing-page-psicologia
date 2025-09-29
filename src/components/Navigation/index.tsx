@@ -1,13 +1,24 @@
 'use client';
 
-import styled from 'styled-components';
-import { theme } from '@/styles/theme';
-import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { Nav, NavItem, NavLink, NavList } from './Navigation.styles';
+import {
+    Nav,
+    NavItem,
+    NavLink,
+    NavList,
+    Hamburger,
+    MobileMenu,
+    MobileMenuWrapper,
+} from './Navigation.styles';
+import CustomButton from '../Button';
 
-export default function Navigation() {
+type NavigationProps = {
+    hasMobileNav?: boolean; // 👈 prop opcional
+};
+
+export default function Navigation({ hasMobileNav = true }: NavigationProps) {
     const [activeSection, setActiveSection] = useState('home');
+    const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -37,52 +48,116 @@ export default function Navigation() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    const handleRedirectToWhatsApp = () => {
+        const phoneNumber = '5511962891098';
+        const message =
+            'Olá Dra. Julia Caroline, gostaria de agendar uma consulta!';
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+            message,
+        )}`;
+
+        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    };
+
+    const handleCloseMenu = (e: React.MouseEvent) => {
+        setIsOpen(false);
+        e.stopPropagation();
+    };
+
+    const handleMenuClick = (e: React.MouseEvent) => {
+        e.stopPropagation();
+    };
+
     return (
         <Nav>
-            <NavList>
-                <NavItem>
-                    <NavLink
-                        href="#home"
-                        className={activeSection === 'home' ? 'active' : ''}
-                    >
-                        Início
-                    </NavLink>
-                </NavItem>
-                <NavItem>
-                    <NavLink
-                        href="#about"
-                        className={activeSection === 'about' ? 'active' : ''}
-                    >
-                        Sobre
-                    </NavLink>
-                </NavItem>
-                <NavItem>
-                    <NavLink
-                        href="#articles"
-                        className={activeSection === 'articles' ? 'active' : ''}
-                    >
-                        Artigos
-                    </NavLink>
-                </NavItem>
-                <NavItem>
-                    <NavLink
-                        href="#testimonials"
-                        className={
-                            activeSection === 'testimonials' ? 'active' : ''
-                        }
-                    >
-                        Depoimentos
-                    </NavLink>
-                </NavItem>
-                <NavItem>
-                    <NavLink
-                        href="#contact"
-                        className={activeSection === 'contact' ? 'active' : ''}
-                    >
-                        Contato
-                    </NavLink>
-                </NavItem>
+            {hasMobileNav && (
+                <Hamburger
+                    onClick={() => setIsOpen(!isOpen)}
+                    className={isOpen ? 'open' : ''}
+                    aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'}
+                >
+                    <span />
+                    <span />
+                    <span />
+                </Hamburger>
+            )}
+
+            <NavList $hasMobileNav={hasMobileNav}>
+                {['home', 'about', 'articles', 'testimonials', 'contact'].map(
+                    (section) => (
+                        <NavItem key={section}>
+                            <NavLink
+                                href={`#${section}`}
+                                className={
+                                    activeSection === section ? 'active' : ''
+                                }
+                            >
+                                {section === 'home'
+                                    ? 'Início'
+                                    : section === 'about'
+                                    ? 'Sobre'
+                                    : section === 'articles'
+                                    ? 'Artigos'
+                                    : section === 'testimonials'
+                                    ? 'Depoimentos'
+                                    : 'Contato'}
+                            </NavLink>
+                        </NavItem>
+                    ),
+                )}
             </NavList>
+
+            {hasMobileNav && (
+                <MobileMenuWrapper
+                    className={isOpen ? 'open' : ''}
+                    onClick={handleCloseMenu}
+                >
+                    <MobileMenu
+                        className={isOpen ? 'open' : ''}
+                        onClick={handleMenuClick}
+                    >
+                        {[
+                            'home',
+                            'about',
+                            'articles',
+                            'testimonials',
+                            'contact',
+                        ].map((section) => (
+                            <NavItem key={section}>
+                                <NavLink
+                                    href={`#${section}`}
+                                    onClick={handleCloseMenu}
+                                    className={
+                                        activeSection === section
+                                            ? 'active'
+                                            : ''
+                                    }
+                                >
+                                    {section === 'home'
+                                        ? 'Início'
+                                        : section === 'about'
+                                        ? 'Sobre'
+                                        : section === 'articles'
+                                        ? 'Artigos'
+                                        : section === 'testimonials'
+                                        ? 'Depoimentos'
+                                        : 'Contato'}
+                                </NavLink>
+                            </NavItem>
+                        ))}
+
+                        <NavItem>
+                            <CustomButton
+                                text="Agendar Consulta"
+                                onClick={() => {
+                                    setIsOpen(false);
+                                    handleRedirectToWhatsApp();
+                                }}
+                            />
+                        </NavItem>
+                    </MobileMenu>
+                </MobileMenuWrapper>
+            )}
         </Nav>
     );
 }

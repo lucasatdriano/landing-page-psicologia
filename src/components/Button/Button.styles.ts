@@ -18,7 +18,15 @@ export const Button = styled.button`
 
     &:hover {
         background-color: ${theme.colors.primary};
-        transform: translateY(-2px);
+        margin-top: -2px;
         box-shadow: 0 4px 12px ${theme.colors.shadow};
+    }
+
+    @media (max-width: 1024px) {
+        font-size: calc(${theme.fontSizes.large} * 0.9);
+    }
+
+    @media (max-width: 480px) {
+        font-size: calc(${theme.fontSizes.large} * 0.8);
     }
 `;

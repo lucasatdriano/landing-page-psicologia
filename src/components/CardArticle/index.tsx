@@ -13,6 +13,8 @@ import {
 
 interface CardArticleProps {
     image: string;
+    imageHeight: number;
+    imageWidth: number;
     imageDescription?: string;
     href?: string;
     title: string;
@@ -21,6 +23,8 @@ interface CardArticleProps {
 
 export default function CardArticle({
     image,
+    imageHeight,
+    imageWidth,
     imageDescription = 'Imagem Ilustrativa',
     href,
     title,
@@ -32,8 +36,8 @@ export default function CardArticle({
                 <Image
                     src={image}
                     alt={imageDescription}
-                    width={400}
-                    height={300}
+                    height={imageHeight}
+                    width={imageWidth}
                 />
             </CardImageWrapper>
             <ArticleTitle>{title}</ArticleTitle>
