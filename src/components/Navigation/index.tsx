@@ -49,7 +49,7 @@ export default function Navigation({ hasMobileNav = true }: NavigationProps) {
     }, []);
 
     const handleRedirectToWhatsApp = () => {
-        const phoneNumber = '5511962891098';
+        const phoneNumber = '5511987654321';
         const message =
             'Olá Dra. Julia Caroline, gostaria de agendar uma consulta!';
         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(

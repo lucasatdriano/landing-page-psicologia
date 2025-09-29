@@ -20,7 +20,7 @@ import { FaInstagram, FaWhatsapp } from 'react-icons/fa6';
 import Form from '@/components/Form';
 
 export default function ContactSection() {
-    const phoneNumber = '5511962891098';
+    const phoneNumber = '5511987654321';
     const message =
         'Olá Dra. Julia Caroline, gostaria de agendar uma consulta!';
 

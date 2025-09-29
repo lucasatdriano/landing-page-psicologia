@@ -89,7 +89,7 @@ export default function Form() {
         }\nData: ${new Date().toLocaleString('pt-BR')}\n\nMensagem:\n${
             formData.message
         }`;
-        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=lucastavares0190@gmail.com&su=${encodeURIComponent(
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=emailprofissional@gmail.com&su=${encodeURIComponent(
             subject,
         )}&body=${encodeURIComponent(body)}`;
         window.open(gmailUrl, '_blank');
