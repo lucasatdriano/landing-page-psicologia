@@ -151,7 +151,7 @@ export const MobileMenu = styled.ul`
     text-align: center;
     gap: 2rem;
     width: fit-content;
-    height: 100svh;
+    height: 100dvh;
     background: ${theme.colors.background};
     padding: 5rem 1.5rem;
     z-index: 1000;
