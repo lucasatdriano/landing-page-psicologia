@@ -9,8 +9,7 @@ import {
 
 export default function WhatsappButton() {
     const phoneNumber = '5511987654321';
-    const message =
-        'Olá Dra. Julia Caroline, gostaria de agendar uma consulta!';
+    const message = 'Olá psicóloga gostaria de agendar uma consulta!';
 
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
         message,
@@ -22,7 +21,7 @@ export default function WhatsappButton() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Conversar no WhatsApp com a Dra. Julia Caroline"
+                aria-label="Conversar no WhatsApp com a psicóloga"
             >
                 <ImageWrapper>
                     <Image

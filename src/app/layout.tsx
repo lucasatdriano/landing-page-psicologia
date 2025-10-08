@@ -14,7 +14,7 @@ const raleway = Raleway({
 });
 
 export const metadata: Metadata = {
-    title: 'Psicóloga Julia Caroline',
+    title: 'Psicóloga',
     description: 'Landing Page de Psicologia',
     icons: {
         icon: 'icons/BrainIcon.svg',

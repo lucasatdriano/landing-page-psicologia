@@ -13,15 +13,15 @@ export default function TestimonialsSection() {
             <CustomTitle text="Depoimentos" />
             <TestimonialsContent>
                 <CardTestimonial
-                    testimonialText="A Dra. Julia me ajudou a superar minha ansiedade de uma forma que nunca imaginei possível. Suas técnicas são eficazes e ela tem uma escuta verdadeiramente acolhedora."
+                    testimonialText="A psicóloga me ajudou a superar minha ansiedade de uma forma que nunca imaginei possível. Suas técnicas são eficazes e ela tem uma escuta verdadeiramente acolhedora."
                     authorName="Patrícia de Souza"
                 />
                 <CardTestimonial
-                    testimonialText="Recomendo a Dra. Julia para todos que precisam de apoio psicológico. Profissional extremamente competente e com uma capacidade incrível de criar um ambiente seguro."
-                    authorName="Lucas Adriano"
+                    testimonialText="Recomendo a psicóloga para todos que precisam de apoio psicológico. Profissional extremamente competente e com uma capacidade incrível de criar um ambiente seguro."
+                    authorName="João Gomes"
                 />
                 <CardTestimonial
-                    testimonialText="As sessões com a Dra. Julia transformaram minha vida. Aprendi a lidar melhor com meu estresse e hoje tenho ferramentas para enfrentar desafios que antes me paralisavam."
+                    testimonialText="As sessões com a psicóloga transformaram minha vida. Aprendi a lidar melhor com meu estresse e hoje tenho ferramentas para enfrentar desafios que antes me paralisavam."
                     authorName="Maria dos Santos"
                 />
             </TestimonialsContent>

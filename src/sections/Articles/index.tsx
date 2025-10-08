@@ -14,7 +14,7 @@ export default function ArticlesSection() {
                     imageHeight={300}
                     imageWidth={439}
                     title="Como lidar com a Ansiedade"
-                    description="Artigo abrangente sobre tipificação, características, manifestações clínicas e tratamentos disponíveis para transtornos de ansiedade, com enfoque no mundo pós-moderno."
+                    description="Descubra estratégias práticas e terapêuticas para compreender e controlar a ansiedade, aprendendo a reconhecer gatilhos e fortalecer seu bem-estar emocional."
                     href="#"
                 />
                 <CardArticle
@@ -22,7 +22,7 @@ export default function ArticlesSection() {
                     imageHeight={300}
                     imageWidth={571}
                     title="Por que fazer terapia em 2025?"
-                    description="Artigo abrangente sobre tipificação, características, manifestações clínicas e tratamentos disponíveis para transtornos de ansiedade, com enfoque no mundo pós-moderno."
+                    description="Entenda como a terapia se tornou ainda mais essencial nos dias atuais, auxiliando no autoconhecimento, no equilíbrio emocional e na construção de uma vida mais leve e saudável."
                     href="#"
                 />
                 <CardArticle
@@ -30,7 +30,7 @@ export default function ArticlesSection() {
                     imageHeight={300}
                     imageWidth={535}
                     title="Como lidar com a Depressão"
-                    description="Artigo abrangente sobre tipificação, características, manifestações clínicas e tratamentos disponíveis para transtornos de ansiedade, com enfoque no mundo pós-moderno."
+                    description="Saiba como identificar sinais de depressão e descubra caminhos terapêuticos eficazes para enfrentar esse desafio com acolhimento, empatia e tratamento adequado."
                     href="#"
                 />
             </ArticlesContent>

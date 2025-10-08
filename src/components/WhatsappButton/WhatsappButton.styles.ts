@@ -58,7 +58,7 @@ export const WhatsAppLink = styled.a`
     }
 
     &::before {
-        content: 'Fale com a Dra. Julia';
+        content: 'Fale com a psicóloga';
         position: absolute;
         top: -35px;
         left: -20%;

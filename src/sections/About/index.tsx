@@ -37,24 +37,22 @@ export default function AboutSection() {
                 </AboutImageWrapper>
                 <AboutContent>
                     <Text>
-                        Sou a Dra. Julia Caroline, psicóloga clínica com
-                        especialização em Terapia Cognitivo-Comportamental. Com
-                        mais de 5 anos de experiência, meu objetivo é oferecer
-                        um atendimento humanizado e eficaz, ajudando meus
-                        pacientes a superarem desafios emocionais e alcançarem
-                        maior qualidade de vida.
+                        Sou psicóloga clínica com foco em promover bem-estar
+                        emocional e qualidade de vida. Meu trabalho é pautado na
+                        escuta empática, no respeito à individualidade e na
+                        busca por caminhos que favoreçam o autoconhecimento.
                     </Text>
                     <Text>
-                        Acredito que cada pessoa é única e merece um tratamento
-                        personalizado, por isso utilizo abordagens baseadas em
-                        evidências científicas adaptadas às necessidades
-                        individuais de cada paciente.
+                        Atuo com base em abordagens terapêuticas contemporâneas,
+                        adaptadas às necessidades e aos objetivos de cada
+                        pessoa, sempre priorizando um espaço acolhedor e livre
+                        de julgamentos.
                     </Text>
                     <Text>
-                        Formada pela Universidade Nove de Julho (UNINOVE) com
-                        mestrado em Psicologia Clínica, mantenho-me
-                        constantemente atualizada através de cursos e
-                        especializações nas mais modernas técnicas terapêuticas.
+                        Acredito que o processo terapêutico é uma jornada de
+                        crescimento e transformação, e meu papel é caminhar ao
+                        lado do paciente, oferecendo apoio, orientação e
+                        ferramentas para o desenvolvimento pessoal.
                     </Text>
                 </AboutContent>
             </AboutContentWrapper>

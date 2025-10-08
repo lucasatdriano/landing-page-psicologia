@@ -21,8 +21,7 @@ import Form from '@/components/Form';
 
 export default function ContactSection() {
     const phoneNumber = '5511987654321';
-    const message =
-        'Olá Dra. Julia Caroline, gostaria de agendar uma consulta!';
+    const message = 'Olá psicóloga, gostaria de agendar uma consulta!';
 
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
         message,
@@ -56,7 +55,7 @@ export default function ContactSection() {
                                 href="https://www.instagram.com/"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                aria-label="Instagram para contato com a Dra. Julia Caroline"
+                                aria-label="Instagram para contato com a psicóloga"
                             >
                                 <FaInstagram size={30} />
                             </IconContainer>
@@ -64,7 +63,7 @@ export default function ContactSection() {
                                 href={whatsappUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                aria-label="Instagram para contato com a Dra. Julia Caroline"
+                                aria-label="Instagram para contato com a psicóloga"
                             >
                                 <FaWhatsapp size={30} />
                             </IconContainer>

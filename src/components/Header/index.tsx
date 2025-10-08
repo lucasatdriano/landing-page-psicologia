@@ -7,8 +7,7 @@ import { HeaderContainer, Logo, ButtonWrapper } from './Header.styles';
 export default function Header() {
     const handleRedirectToWhatsApp = () => {
         const phoneNumber = '5511987654321';
-        const message =
-            'Olá Dra. Julia Caroline, gostaria de agendar uma consulta!';
+        const message = 'Olá psicóloga, gostaria de agendar uma consulta!';
         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
             message,
         )}`;
@@ -18,7 +17,7 @@ export default function Header() {
 
     return (
         <HeaderContainer>
-            <Logo href="#home">Dra. Julia Caroline</Logo>
+            <Logo href="#home">Psicóloga</Logo>
             <Navigation />
             <ButtonWrapper>
                 <CustomButton
