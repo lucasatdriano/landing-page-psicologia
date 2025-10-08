@@ -29,37 +29,37 @@ Este é um projeto de landing page para serviços de psicologia, desenvolvido co
 
 ## 📁 Estrutura do Projeto
 
-    - **next.config.js**: Configurações do Next.js
-    - **package.json**: Dependências e scripts
-    - **tsconfig.json**: Configurações do TypeScript
-    - **public**
-        - **images**: Contém as imagens do site.
-        - **icons**: Contém os icons do site.
-    - **src**
-        - **app**: Páginas e rotas da aplicação (App Router do Next.js)
-        - **components**: Componentes React reutilizáveis
-            - **Button**: Componente de botão customizado
-            - **CardArticle**: Card para artigos e posts
-            - **CardTestimonial**: Card para depoimentos
-            - **Footer**: Rodapé da aplicação
-            - **Form**: Componentes de formulário
-            - **Header**: Cabeçalho e navegação
-            - **InputText**: Campo de entrada de texto
-            - **InputTextArea**: Campo de área de texto
-            - **Navigation**: Componentes de navegação
-            - **Title**: Componentes de título
-            - **WhatsappButton**: Botão flutuante do WhatsApp
-        - **providers**: Providers da aplicação
-            - **ThemeProviderWrapper**: Provedor de temas
-        - **sections**: Seções principais da landing page
-            - **About**: Seção "Sobre"
-            - **Articles**: Seção de artigos
-            - **Contact**: Seção de contato
-            - **Hero**: Seção principal (hero section)
-            - **Testimonials**: Seção de depoimentos
-        - **styles**: Estilização global e temas
-            - **GlobalStyle.ts**: Estilos globais com Styled Components
-            - **theme.ts**: Definições do tema (cores, tipografia, etc.)
+- **next.config.js**: Configurações do Next.js
+- **package.json**: Dependências e scripts
+- **tsconfig.json**: Configurações do TypeScript
+- **public**
+    - **images**: Contém as imagens do site.
+    - **icons**: Contém os icons do site.
+- **src**
+    - **app**: Páginas e rotas da aplicação (App Router do Next.js)
+    - **components**: Componentes React reutilizáveis
+        - **Button**: Componente de botão customizado
+        - **CardArticle**: Card para artigos e posts
+        - **CardTestimonial**: Card para depoimentos
+        - **Footer**: Rodapé da aplicação
+        - **Form**: Componentes de formulário
+        - **Header**: Cabeçalho e navegação
+        - **InputText**: Campo de entrada de texto
+        - **InputTextArea**: Campo de área de texto
+        - **Navigation**: Componentes de navegação
+        - **Title**: Componentes de título
+        - **WhatsappButton**: Botão flutuante do WhatsApp
+    - **providers**: Providers da aplicação
+        - **ThemeProviderWrapper**: Provedor de temas
+    - **sections**: Seções principais da landing page
+        - **About**: Seção "Sobre"
+        - **Articles**: Seção de artigos
+        - **Contact**: Seção de contato
+        - **Hero**: Seção principal (hero section)
+        - **Testimonials**: Seção de depoimentos
+    - **styles**: Estilização global e temas
+        - **GlobalStyle.ts**: Estilos globais com Styled Components
+        - **theme.ts**: Definições do tema (cores, tipografia, etc.)
 
 ## 📝 Como Executar o Projeto
 
