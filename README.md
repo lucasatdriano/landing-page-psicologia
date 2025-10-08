@@ -35,7 +35,6 @@ Este é um projeto de landing page para serviços de psicologia, desenvolvido co
     - **public**
         - **images**: Contém as imagens do site.
         - **icons**: Contém os icons do site.
-        
     - **src**
         - **app**: Páginas e rotas da aplicação (App Router do Next.js)
         - **components**: Componentes React reutilizáveis
