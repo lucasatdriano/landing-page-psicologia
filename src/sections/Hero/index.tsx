@@ -38,7 +38,7 @@ export default function HeroSection() {
             <HeroImageWrapper>
                 <Image
                     src="/images/HeroImage.jpg"
-                    alt="Imagem Demonstrativa"
+                    alt="Psicóloga sentada em uma cadeira - imagem ilustrativa / Foto: Alexander Mass / Unsplash"
                     width={350}
                     height={250}
                 />
