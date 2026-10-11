@@ -13,6 +13,7 @@ export default function ArticlesSection() {
                     image="/images/AnxietyImage.jpg"
                     imageHeight={300}
                     imageWidth={439}
+                    imageDescription="Zoom em uma pessoa vestindo blusa de frio cinza entrelaçando e apertando as próprias mãos em um gesto de inquietação e ansiedade."
                     title="Como lidar com a Ansiedade"
                     description="Descubra estratégias práticas e terapêuticas para compreender e controlar a ansiedade, aprendendo a reconhecer gatilhos e fortalecer seu bem-estar emocional."
                     href="#"
@@ -21,7 +22,8 @@ export default function ArticlesSection() {
                     image="/images/PsychologistImage.jpg"
                     imageHeight={300}
                     imageWidth={571}
-                    title="Por que fazer terapia em 2025?"
+                    imageDescription='Visão em primeira pessoa por trás de uma psicóloga segurando uma caneta, enquanto escuta atentamente um paciente desfocado sentado no sofá ao fundo.'
+                    title="Por que fazer terapia em 2026?"
                     description="Entenda como a terapia se tornou ainda mais essencial nos dias atuais, auxiliando no autoconhecimento, no equilíbrio emocional e na construção de uma vida mais leve e saudável."
                     href="#"
                 />
@@ -29,6 +31,7 @@ export default function ArticlesSection() {
                     image="/images/DepressionImage.jpg"
                     imageHeight={300}
                     imageWidth={535}
+                    imageDescription='Silhueta de uma criança sentada no chão de um corredor escuro, com a cabeça apoiada nos joelhos e os braços em volta das pernas, transmitindo solidão.'
                     title="Como lidar com a Depressão"
                     description="Saiba como identificar sinais de depressão e descubra caminhos terapêuticos eficazes para enfrentar esse desafio com acolhimento, empatia e tratamento adequado."
                     href="#"

@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import {
     AboutContainer,
@@ -11,29 +12,43 @@ import {
 import CustomTitle from '@/components/Title';
 
 export default function AboutSection() {
+    const [isMobile, setIsMobile] = useState(false);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+
+        const checkMatch = () => setIsMobile(window.innerWidth <= 1024);
+        checkMatch();
+
+        window.addEventListener('resize', checkMatch);
+        return () => window.removeEventListener('resize', checkMatch);
+    }, []);
+
     return (
         <AboutContainer id="about">
             <CustomTitle text="Sobre Mim" />
             <AboutContentWrapper>
                 <AboutImageWrapper>
-                    <div className="desktop-image">
-                        <Image
-                            src="/images/AboutImage.jpg"
-                            alt="Imagem Desktop"
-                            width={490}
-                            height={300}
-                            priority
-                        />
-                    </div>
-                    <div className="mobile-image">
-                        <Image
-                            src="/images/HeroImage.jpg"
-                            alt="Imagem Mobile"
-                            width={350}
-                            height={250}
-                            priority
-                        />
-                    </div>
+                    {mounted && (
+                        isMobile ? (
+                            <Image
+                                src="/images/HeroImage.jpg"
+                                alt="Psicóloga clínica de cabelos longos, vestindo camisa roxa, sentada sorrindo em uma poltrona escura em seu escritório de atendimento."
+                                width={350}
+                                height={250}
+                                priority
+                            />
+                        ) : (
+                            <Image
+                                src="/images/AboutImage.jpg"
+                                alt="Consultório de psicologia aconchegante com duas poltronas reclináveis cinzas sobre um tapete geométrico e paredes de cimento queimado."
+                                width={490}
+                                height={300}
+                                priority
+                            />
+                        )
+                    )}
                 </AboutImageWrapper>
                 <AboutContent>
                     <Text>

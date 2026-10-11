@@ -46,25 +46,15 @@ export const AboutImageWrapper = styled.div`
     max-height: 300px;
     border-radius: 15px;
 
-    .desktop-image {
+    img {
         display: block;
-    }
-
-    .mobile-image {
-        display: none;
+        height: auto;
+        max-width: 100%;
     }
 
     @media (max-width: 1024px) {
         margin: auto;
         max-height: 250px;
-
-        .desktop-image {
-            display: none;
-        }
-
-        .mobile-image {
-            display: block;
-        }
     }
 `;
 

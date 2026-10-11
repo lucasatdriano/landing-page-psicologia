@@ -1,7 +1,7 @@
 import { theme } from '@/styles/theme';
 import styled from 'styled-components';
 
-export const CardContainer = styled.header`
+export const CardContainer = styled.article`
     width: 350px;
     background-color: ${theme.colors.secondary};
     display: grid;
@@ -20,20 +20,25 @@ export const CardContainer = styled.header`
 
     @media (max-width: 768px) {
         width: 100%;
-        min-width: 300px;
     }
 `;
 
 export const CardImageWrapper = styled.div`
     overflow: hidden;
     width: 100%;
-    max-height: 200px;
+    height: 200px;
     border-radius: 10px;
     margin: auto;
 
     @media (max-width: 1350px) {
-        max-height: 150px;
-        max-width: fit-content;
+        height: 150px;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
     }
 `;
 

@@ -42,7 +42,9 @@ export default function CardArticle({
             </CardImageWrapper>
             <ArticleTitle>{title}</ArticleTitle>
             <ArticleDescription>{description}</ArticleDescription>
-            <ArticleLink href={href}>Ler Mais</ArticleLink>
+            <ArticleLink href={href} aria-label={`Ler mais sobre o artigo: ${title}`}>
+                Ler Mais
+            </ArticleLink>
         </CardContainer>
     );
 }

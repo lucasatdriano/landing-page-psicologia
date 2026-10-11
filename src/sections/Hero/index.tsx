@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import CustomButton from '@/components/Button';
 import {
     HeroContainer,
@@ -11,10 +12,22 @@ import {
 import Image from 'next/image';
 
 export default function HeroSection() {
+    const [isDesktop, setIsDesktop] = useState(false);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+        const checkMatch = () => setIsDesktop(window.innerWidth > 1024);
+        
+        checkMatch();
+        window.addEventListener('resize', checkMatch);
+        return () => window.removeEventListener('resize', checkMatch);
+    }, []);
+
     const handleRedirectToWhatsApp = () => {
         const phoneNumber = '5511987654321';
         const message = 'Olá psicóloga, gostaria de agendar uma consulta!';
-        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+        const whatsappUrl = `https://wa.me{phoneNumber}?text=${encodeURIComponent(
             message,
         )}`;
 
@@ -35,14 +48,23 @@ export default function HeroSection() {
                     onClick={handleRedirectToWhatsApp}
                 />
             </HeroContent>
-            <HeroImageWrapper>
-                <Image
-                    src="/images/HeroImage.jpg"
-                    alt="Psicóloga sentada em uma cadeira - imagem ilustrativa / Foto: Alexander Mass / Unsplash"
-                    width={350}
-                    height={250}
-                />
-            </HeroImageWrapper>
+
+            {mounted && isDesktop && (
+                <figure style={{ margin: 0 }}> 
+                    <HeroImageWrapper>
+                        <Image
+                            src="/images/HeroImage.jpg"
+                            alt="Psicóloga clínica de cabelos longos, vestindo camisa roxa, sentada sorrindo em uma poltrona escura em seu escritório de atendimento."
+                            width={350}
+                            height={250}
+                            priority
+                        />
+                        <figcaption>
+                            Imagem Ilustrativa - Foto: Alexander Mass / Unsplash
+                        </figcaption>
+                    </HeroImageWrapper>
+                </figure>
+            )}
         </HeroContainer>
     );
 }

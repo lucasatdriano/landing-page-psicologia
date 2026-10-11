@@ -1,7 +1,7 @@
 import { theme } from '@/styles/theme';
 import styled from 'styled-components';
 
-export const CardContainer = styled.header`
+export const CardContainer = styled.article`
     width: 350px;
     background-color: ${theme.colors.secondary};
     display: grid;
@@ -20,7 +20,6 @@ export const CardContainer = styled.header`
 
     @media (max-width: 768px) {
         width: 100%;
-        min-width: 300px;
     }
 `;
 

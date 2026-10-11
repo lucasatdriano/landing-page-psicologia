@@ -2,7 +2,7 @@
 
 Este é um projeto de landing page para serviços de psicologia, desenvolvido com **Next.js**, **TypeScript** e **Styled Components**. O site possui design responsivo e é otimizado para performance.
 
-<img src="public/images/capaReadMe.png" alt="Capa da Landing Page" style="width: 100%;">
+<img src="public/images/capaReadMe.jpg" alt="Capa da Landing Page" style="width: 100%;">
 
 ## Índice
 

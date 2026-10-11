@@ -100,6 +100,10 @@ export const Text = styled.p`
     @media (max-width: 768px) {
         font-size: calc(${theme.fontSizes.large} * 0.8);
     }
+
+    @media (max-width: 380px) {
+        font-size: calc(${theme.fontSizes.large} * 0.7);
+    }
 `;
 
 export const TextTitle = styled.h3`
@@ -114,6 +118,10 @@ export const TextTitle = styled.h3`
 
     @media (max-width: 768px) {
         font-size: calc(${theme.fontSizes.title} * 0.8);
+    }
+
+    @media (max-width: 380px) {
+        font-size: calc(${theme.fontSizes.title} * 0.7);
     }
 `;
 

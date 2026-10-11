@@ -15,7 +15,10 @@ export const Nav = styled.nav`
 export const NavList = styled.ul<NavListProps>`
     list-style: none;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 2rem;
+    row-gap: 1rem;
 
     ${({ $hasMobileNav }) =>
         $hasMobileNav &&

@@ -25,13 +25,21 @@ export const HeroContainer = styled.section`
 
 export const HeroImageWrapper = styled.div`
     overflow: hidden;
-    height: 250px;
+    height: auto;
     width: 100%;
     max-width: 350px;
     border-radius: 15px;
 
-    @media (max-width: 1024px) {
-        display: none;
+    img {
+        display: block;
+        border-radius: 15px;
+    }
+
+    figcaption {
+        font-size: 11px;
+        color: #777;
+        text-align: center;
+        margin-top: 0.5rem;
     }
 `;
 
