@@ -41,20 +41,36 @@ export const AboutContentWrapper = styled.div`
 export const AboutImageWrapper = styled.div`
     overflow: hidden;
     max-width: 100%;
-    width: fit-content;
-    height: fit-content;
-    max-height: 300px;
     border-radius: 15px;
+    
+    width: 490px;
+    height: 300px;
+    aspect-ratio: 490 / 300;
 
     img {
         display: block;
-        height: auto;
-        max-width: 100%;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
+
+    .img-desktop { display: block; }
+    .img-mobile { display: none; }
 
     @media (max-width: 1024px) {
         margin: auto;
-        max-height: 250px;
+        
+        width: 350px;
+        height: 250px;
+        aspect-ratio: 350 / 250;
+
+        .img-desktop { display: none; }
+        .img-mobile { display: block; }
+    }
+
+    @media (max-width: 400px) {
+        width: 100%;
+        height: auto;
     }
 `;
 
