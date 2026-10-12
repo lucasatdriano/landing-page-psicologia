@@ -5,6 +5,10 @@ type NavListProps = {
     $hasMobileNav?: boolean;
 };
 
+type MobileMenuProps = {
+    $isOpen: boolean;
+};
+
 export const Nav = styled.nav`
     display: flex;
     justify-content: center;
@@ -88,7 +92,7 @@ export const NavLink = styled.a`
     }
 `;
 
-export const Hamburger = styled.button`
+export const Hamburger = styled.button<MobileMenuProps>`
     display: none;
     flex-direction: column;
     justify-content: space-between;
@@ -108,38 +112,24 @@ export const Hamburger = styled.button`
         transition: all 0.3s ease;
     }
 
-    &.open span:nth-child(1) {
-        transform: rotate(45deg) translate(7px, 5px);
-    }
-    &.open span:nth-child(2) {
-        opacity: 0;
-    }
-    &.open span:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -5px);
-    }
-
     @media (max-width: 1024px) {
-        display: flex;
+        display: ${({ $isOpen }) => ($isOpen ? 'none' : 'flex')};
         position: absolute;
         right: 1rem;
     }
 `;
 
-export const MobileMenuWrapper = styled.div`
+export const MobileMenuWrapper = styled.div<MobileMenuProps>`
     position: fixed;
     inset: 0;
     display: flex;
     justify-content: flex-end;
     background: ${theme.colors.shadow};
-    transform: translateX(100%);
-    transition: transform 0.25s ease;
-    pointer-events: none;
     z-index: 999;
-
-    &.open {
-        transform: translateX(0);
-        pointer-events: auto;
-    }
+    
+    transform: ${({ $isOpen }) => ($isOpen ? 'translateX(0)' : 'translateX(100%)')};
+    pointer-events: ${({ $isOpen }) => ($isOpen ? 'auto' : 'none')};
+    transition: transform 0.25s ease;
 
     @media (min-width: 1024px) {
         display: none;

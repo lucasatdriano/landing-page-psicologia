@@ -64,10 +64,18 @@ export default function Navigation({ hasMobileNav = true }: NavigationProps) {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') setIsOpen(false);
+        };
+        if (isOpen) window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [isOpen]);
+
     const handleRedirectToWhatsApp = () => {
         const phoneNumber = '5511987654321';
         const message = 'Olá psicóloga, gostaria de agendar uma consulta!';
-        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+        const whatsappUrl = `https://wa.me{phoneNumber}?text=${encodeURIComponent(
             message,
         )}`;
 
@@ -83,14 +91,29 @@ export default function Navigation({ hasMobileNav = true }: NavigationProps) {
         e.stopPropagation();
     };
 
+    const sections = ['home', 'about', 'articles', 'testimonials', 'contact'];
+
+    const getSectionLabel = (section: string) => {
+        const labels: Record<string, string> = {
+            home: 'Início',
+            about: 'Sobre',
+            articles: 'Artigos',
+            testimonials: 'Depoimentos',
+            contact: 'Contato',
+        };
+        return labels[section] || section;
+    };
+
     return (
         <>
-            <Nav>
+            <Nav aria-label="Menu Principal">
                 {hasMobileNav && (
                     <Hamburger
                         onClick={() => setIsOpen((s) => !s)}
-                        className={isOpen ? 'open' : ''}
-                        aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'}
+                        $isOpen={isOpen}
+                        aria-label="Abrir menu de navegação"
+                        aria-expanded={isOpen}
+                        aria-controls="mobile-nav-list"
                     >
                         <span />
                         <span />
@@ -99,32 +122,20 @@ export default function Navigation({ hasMobileNav = true }: NavigationProps) {
                 )}
 
                 <NavList $hasMobileNav={hasMobileNav}>
-                    {[
-                        'home',
-                        'about',
-                        'articles',
-                        'testimonials',
-                        'contact',
-                    ].map((section) => (
-                        <NavItem key={section}>
-                            <NavLink
-                                href={`#${section}`}
-                                className={
-                                    activeSection === section ? 'active' : ''
-                                }
-                            >
-                                {section === 'home'
-                                    ? 'Início'
-                                    : section === 'about'
-                                    ? 'Sobre'
-                                    : section === 'articles'
-                                    ? 'Artigos'
-                                    : section === 'testimonials'
-                                    ? 'Depoimentos'
-                                    : 'Contato'}
-                            </NavLink>
-                        </NavItem>
-                    ))}
+                    {sections.map((section) => {
+                        const isActive = activeSection === section;
+                        return (
+                            <NavItem key={section}>
+                                <NavLink
+                                    href={`#${section}`}
+                                    className={isActive ? 'active' : ''}
+                                    aria-current={isActive ? 'page' : undefined}
+                                >
+                                    {getSectionLabel(section)}
+                                </NavLink>
+                            </NavItem>
+                        );
+                    })}
                 </NavList>
             </Nav>
 
@@ -132,43 +143,31 @@ export default function Navigation({ hasMobileNav = true }: NavigationProps) {
                 hasMobileNav &&
                 createPortal(
                     <MobileMenuWrapper
-                        className={isOpen ? 'open' : ''}
+                        $isOpen={isOpen}
                         onClick={handleCloseMenu}
-                        aria-hidden={!isOpen}
+                        style={{ display: isOpen ? 'flex' : 'none' }}
                     >
                         <MobileMenu
+                            id="mobile-nav-list"
                             className={isOpen ? 'open' : ''}
                             onClick={handleMenuClick}
+                            aria-label="Menu Mobile"
                         >
-                            {[
-                                'home',
-                                'about',
-                                'articles',
-                                'testimonials',
-                                'contact',
-                            ].map((section) => (
-                                <NavItem key={section}>
-                                    <NavLink
-                                        href={`#${section}`}
-                                        onClick={handleCloseMenu}
-                                        className={
-                                            activeSection === section
-                                                ? 'active'
-                                                : ''
-                                        }
-                                    >
-                                        {section === 'home'
-                                            ? 'Início'
-                                            : section === 'about'
-                                            ? 'Sobre'
-                                            : section === 'articles'
-                                            ? 'Artigos'
-                                            : section === 'testimonials'
-                                            ? 'Depoimentos'
-                                            : 'Contato'}
-                                    </NavLink>
-                                </NavItem>
-                            ))}
+                            {sections.map((section) => {
+                                const isActive = activeSection === section;
+                                return (
+                                    <NavItem key={section}>
+                                        <NavLink
+                                            href={`#${section}`}
+                                            onClick={handleCloseMenu}
+                                            className={isActive ? 'active' : ''}
+                                            aria-current={isActive ? 'page' : undefined}
+                                        >
+                                            {getSectionLabel(section)}
+                                        </NavLink>
+                                    </NavItem>
+                                );
+                            })}
 
                             <NavItem>
                                 <CustomButton
