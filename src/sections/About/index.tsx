@@ -29,7 +29,6 @@ export default function AboutSection() {
                         alt="Consultório de psicologia aconchegante com duas poltronas reclináveis cinzas sobre um tapete geométrico e paredes de cimento queimado."
                         width={490}
                         height={300}
-                        priority
                         className="img-desktop"
                     />
                 </AboutImageWrapper>
